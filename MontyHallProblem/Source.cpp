@@ -20,17 +20,10 @@ int main() {
 
 		cout << "Pick a door (1-3): ";
 
-		do {
+		while (!(cin >> plr_choice) || !(plr_choice > 0 && plr_choice < 4)) {
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cin >> plr_choice;
-			for (int i = 0; i < 3; i++) {
-				if (choices[i] == plr_choice) {
-					loop = false;
-					break;
-				}
-			}
-		} while (!(cin) || loop);
+		}
 
 		for (int wrong_door = 0; wrong_door < 3; wrong_door++) {
 			if (choices[wrong_door] != win_door && choices[wrong_door] != plr_choice) {
@@ -66,7 +59,7 @@ int main() {
 		}
 		
 		if (i == 10) {
-			cout << "Your final win percentage is " << plr_wins / i << "%";
+			cout << "Your final win percentage is " << plr_wins / i << "%" << endl << endl;
 		}
 
 		cout << "Press any key to continue . . .";
@@ -79,3 +72,4 @@ int main() {
 	getchar();
 	return 0;
 }
+
