@@ -20,16 +20,17 @@ int main() {
 
 		cout << "Pick a door (1-3): ";
 
-		while (!(cin >> plr_choice) && loop) {
+		do {
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cin >> plr_choice;
 			for (int i = 0; i < 3; i++) {
 				if (choices[i] == plr_choice) {
 					loop = false;
 					break;
 				}
 			}
-		} 
+		} while (!(cin) || loop);
 
 		for (int wrong_door = 0; wrong_door < 3; wrong_door++) {
 			if (choices[wrong_door] != win_door && choices[wrong_door] != plr_choice) {
@@ -37,7 +38,7 @@ int main() {
 				for (int change_door = 0; change_door < 3; change_door++) {
 					if (choices[change_door] != choices[wrong_door] && choices[change_door] != plr_choice) {
 
-						cout << "The door " << choices[wrong_door] << " contains a goat. Would you like to switch to door " << choices[change_door] << " (Yes: 1 or No: 0)? ";
+						cout << "Door " << choices[wrong_door] << " contains a goat. Would you like to switch to door " << choices[change_door] << " (Yes: 1 or No: 0)? ";
 						do {
 							cin.clear();
 							cin.ignore(numeric_limits<streamsize>::max(), '\n');
