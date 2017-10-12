@@ -2,8 +2,10 @@
 
 #include <iostream>
 #include <ctime>
+#include <fstream>
 using namespace std;
 
+int get_premise();
 void get_plr_choice(int &plr_choice);
 void get_plr_switch(int choices[], int wrong_door, int change_door, int &plr_switch);
 
@@ -20,6 +22,11 @@ int main() {
 	double plr_wins = 0;
 	srand(time(NULL));
 	
+	// Explain experiment
+	if (get_premise()) {
+		cout << "Cannot find Premise.txt" << endl;
+	}
+
 	// Go through 10 iterations to determine probability
 	for (int i = 0; i < 10; i++) {
 		
@@ -59,6 +66,24 @@ int main() {
 
 	cout << "Your final win percentage is " << calculate_win_percent(plr_wins, 10) << "%" << endl << endl;
 	pause();
+	return 0;
+}
+
+int get_premise() {
+	ifstream in("premise.txt");
+
+	if (!in) {
+		return 1;
+	}
+
+	char line[255];
+
+	while (in) {
+		in.getline(line, 255);
+		if (in) {
+			cout << line << endl;
+		}
+	}
 	return 0;
 }
 
